@@ -853,7 +853,7 @@ bool Native::CreateWindow_Effekseer(void* pHandle, int width, int height, bool i
 	}
 
 	g_sound = new ::EffekseerTool::Sound();
-	if( g_sound->Initialize( 16, 16 ) )
+	if( g_sound->Initialize() )
 	{
 		g_manager->SetSoundPlayer( g_sound->GetSound()->CreateSoundPlayer() );
 		g_manager->SetSoundLoader( new SoundLoader( g_sound->GetSound()->CreateSoundLoader() ) );
@@ -907,7 +907,8 @@ bool Native::UpdateWindow()
 	}
 
 	g_sound->SetListener( position, g_focus_position, ::Effekseer::Vector3D( 0.0f, 1.0f, 0.0f ) );
-	
+	g_sound->Update();
+
 	g_renderer->BeginRendering();
 	g_manager->Draw();
 	g_renderer->EndRendering();
